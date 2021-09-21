@@ -54,7 +54,10 @@ class Movie extends Component {
                     </button>
                   </td>
                   <td>
-                    <button className="butn del">
+                    <button
+                      className="butn del"
+                      onClick={() => this.handleDelete(movie)}
+                    >
                       <i className="fa fa-trash text-danger"></i>
                     </button>
                   </td>
@@ -66,6 +69,10 @@ class Movie extends Component {
       </body>
     );
   }
+  handleDelete = (i) => {
+    const newMovies = this.state.allMovies.filter((m) => m._id !== i._id);
+    this.setState({ allMovies: newMovies });
+  };
 }
 
 export default Movie;
