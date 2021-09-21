@@ -1,10 +1,13 @@
+import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import Movie from "./components/movie_comp/movie";
+import "bootstrap/dist/css/bootstrap.css";
+import "font-awesome/css/font-awesome.min.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1>Hello</h1>
+    <Movie />
   </React.StrictMode>,
   document.getElementById("root")
 );
