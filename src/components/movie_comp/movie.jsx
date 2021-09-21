@@ -1,6 +1,7 @@
 import "./movie.css";
 import React, { Component } from "react";
-import { getMovies } from "../services/fakeMovieService";
+import { getMovies } from "../../services/fakeMovieService";
+import Like from "../common/like";
 
 class Movie extends Component {
   state = { allMovies: getMovies() };
@@ -49,9 +50,12 @@ class Movie extends Component {
                     </div>
                   </td>
                   <td>
-                    <button className="butn like">
-                      <i className="text-primary fa fa-thumbs-up"></i>
-                    </button>
+                    <Like
+                      status={movie.like}
+                      onLiked={() => {
+                        this.handleLiked(movie);
+                      }}
+                    />
                   </td>
                   <td>
                     <button
@@ -72,6 +76,12 @@ class Movie extends Component {
   handleDelete = (i) => {
     const newMovies = this.state.allMovies.filter((m) => m._id !== i._id);
     this.setState({ allMovies: newMovies });
+  };
+  handleLiked = (i) => {
+    const movies = [...this.state.allMovies];
+    const index = movies.indexOf(i);
+    movies[index].like = !movies[index].like;
+    this.setState({ allMovies: movies });
   };
 }
 
