@@ -1,6 +1,7 @@
 * {
   max-width: 100%;
   box-sizing: border-box !important;
+  font-family: "Rubik", sans-serif;
 }
 .wrapper {
   overflow-x: auto;
@@ -82,4 +83,9 @@
 .wrapper::-webkit-scrollbar-thumb {
   background: #2f80ed;
   border-radius: 10px;
+}
+
+/* --------------- Sidebar --------------- */
+.sidebar {
+  border-right: 1px solid rgba(47, 128, 237, 0.1);
 }
