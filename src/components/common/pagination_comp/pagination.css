@@ -1,0 +1,13 @@
+/*==================== Paginator ====================*/
+
+.my {
+  color: #fff !important ;
+  border-color: #2f80ed;
+  cursor: pointer;
+}
+
+.active a {
+  cursor: default;
+  color: #2f80ed !important;
+  border-color: #2f80ed !important;
+}

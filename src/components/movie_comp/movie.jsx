@@ -2,12 +2,20 @@ import "./movie.css";
 import React, { Component } from "react";
 import { getMovies } from "../../services/fakeMovieService";
 import Like from "../common/like";
+import Pagination from "../common/pagination_comp/pagination";
+import Paginate from "../../utils/paginate";
 
 class Movie extends Component {
-  state = { allMovies: getMovies() };
+  state = { allMovies: [], pageSize: 4, cPage: 1 };
+
+  componentDidMount() {
+    this.setState({ allMovies: getMovies() });
+  }
 
   render() {
-    const { allMovies } = this.state;
+    const { allMovies, pageSize, cPage } = this.state;
+
+    const pMovies = Paginate(allMovies, pageSize, cPage);
 
     if (allMovies.length === 0)
       return <h1 className="mt-5">There no more movies in DataBase</h1>;
@@ -15,7 +23,7 @@ class Movie extends Component {
     return (
       <body className="wrapper">
         <main className="wrapper px-3 pt-3">
-          <table className="table main__table m-0">
+          <table className="table main__table mb-3">
             <thead>
               <tr>
                 <th colSpan="1">TITLE</th>
@@ -26,7 +34,7 @@ class Movie extends Component {
               </tr>
             </thead>
             <tbody>
-              {allMovies.map((movie) => (
+              {pMovies.map((movie) => (
                 <tr key={movie._id}>
                   <td>
                     <div className="main__table-text mt-1">
@@ -69,6 +77,12 @@ class Movie extends Component {
               ))}
             </tbody>
           </table>
+          <Pagination
+            tNum={allMovies.length}
+            pSize={pageSize}
+            cPage={cPage}
+            onPageChange={this.handlePageChange}
+          />
         </main>
       </body>
     );
@@ -82,6 +96,9 @@ class Movie extends Component {
     const index = movies.indexOf(i);
     movies[index].like = !movies[index].like;
     this.setState({ allMovies: movies });
+  };
+  handlePageChange = (p) => {
+    this.setState({ cPage: p });
   };
 }
 
