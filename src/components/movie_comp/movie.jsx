@@ -1,5 +1,6 @@
 import "./movie.css";
 import React, { Component } from "react";
+import _ from "lodash";
 import { getMovies } from "../../services/fakeMovieService";
 import { getGenres } from "../../services/fakeGenreService";
 import MoviesTable from "../moviesTable/moviesTable";
@@ -8,28 +9,40 @@ import Paginate from "../../utils/paginate";
 import ListGroup from "../common/listGroup_comp/listGroup";
 
 class Movie extends Component {
-  state = { allMovies: [], pageSize: 4, cPage: 1, genres: [] };
+  state = {
+    allMovies: [],
+    pageSize: 4,
+    cPage: 1,
+    genres: [],
+    sortColumn: { path: "title", order: "asc" },
+  };
 
   componentDidMount() {
-    const genres = [{ name: "All Genres" }, ...getGenres()];
+    const genres = [{ _id: "", name: "All Genres" }, ...getGenres()];
     this.setState({ allMovies: getMovies(), genres });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log(this.state.sortColumn);
   }
 
   render() {
-    const { allMovies, pageSize, cPage, genres, selectedGenre } = this.state;
+    const { allMovies, pageSize, cPage, genres, selectedGenre, sortColumn } =
+      this.state;
 
     const fMovies =
       selectedGenre && selectedGenre._id
         ? allMovies.filter((movie) => movie.genre._id === selectedGenre._id)
         : allMovies;
 
-    const pMovies = Paginate(fMovies, pageSize, cPage);
+    const sMovies = _.orderBy(fMovies, [sortColumn.path], [sortColumn.order]);
+
+    const pMovies = Paginate(sMovies, pageSize, cPage);
 
     if (allMovies.length === 0)
       return <h1 className="mt-5">There no more movies in DataBase</h1>;
 
     return (
-      <body className="wrapper row m-0">
+      <main className="wrapper row m-0">
         <div className="col-2 sidebar">
           <ListGroup
             genres={genres}
@@ -42,8 +55,10 @@ class Movie extends Component {
           <main className="wrapper px-3 pt-3">
             <MoviesTable
               moviesList={pMovies}
-              onDelete={this.handleDelete}
+              sortColumn={sortColumn}
+              onSort={this.handleSort}
               onLiked={this.handleLiked}
+              onDelete={this.handleDelete}
             />
             <Pagination
               tNum={fMovies.length}
@@ -53,7 +68,7 @@ class Movie extends Component {
             />
           </main>
         </div>
-      </body>
+      </main>
     );
   }
   handleDelete = (i) => {
@@ -71,6 +86,9 @@ class Movie extends Component {
   };
   handleGenreSelect = (g) => {
     this.setState({ selectedGenre: g, cPage: 1 });
+  };
+  handleSort = (sortColumn) => {
+    this.setState({ sortColumn });
   };
 }
 

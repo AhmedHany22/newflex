@@ -10,6 +10,10 @@
   font-size: 14px;
   font-weight: 400;
 }
+.main__table th span:hover {
+  cursor: pointer;
+  color: #2f80ed;
+}
 .main__table tbody tr {
   background-color: #151f30;
   border-top: 8px solid #121620;

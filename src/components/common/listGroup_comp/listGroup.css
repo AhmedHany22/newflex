@@ -1,4 +1,6 @@
 .mbtn {
+  margin: 0.6rem 1rem;
+  padding: 0 !important;
   font-size: 18px !important;
   font-weight: 400 !important;
   color: #e0e0e0 !important;
@@ -6,7 +8,9 @@
   background-color: #121620 !important;
   font-family: "Rubik", sans-serif !important;
 }
-.active {
+.list-group .active {
+  margin: 0.6rem 1rem !important;
+  padding: 0 !important;
   color: #2f80ed !important;
 }
 
