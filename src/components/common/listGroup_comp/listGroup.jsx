@@ -25,7 +25,7 @@ const ListGroup = ({ genres, onItemSelect, selectedItem }) => {
       ))}
     </ul>
   );
-  ListGroup.defaultProps = { kProp: "_id", tProp: "name" };
 };
+ListGroup.defaultProps = { kProp: "_id", tProp: "name" };
 
 export default ListGroup;

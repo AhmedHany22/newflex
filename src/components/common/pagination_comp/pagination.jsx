@@ -16,6 +16,7 @@ const Pagination = ({ tNum, pSize, onPageChange, cPage }) => {
                 className={cPage === p ? "page-item active" : "page-item"}
               >
                 <a
+                  href="/#"
                   className="page-link bg-dark border-dark rounded my"
                   onClick={() => {
                     onPageChange(p);
