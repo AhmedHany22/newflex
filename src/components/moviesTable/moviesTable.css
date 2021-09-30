@@ -32,17 +32,17 @@
 
 /* --------------- Rounded --------------- */
 .main__table td:first-child {
-  border-radius: 20px 0 0 20px;
+  border-radius: 15px 0 0 15px;
 }
 .main__table td:last-child {
-  border-radius: 0 20px 20px 0;
+  border-radius: 0 15px 15px 0;
 }
 
 /* --------------- Buttons --------------- */
 .butn {
   border: none;
   padding: 4px 7px;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 .del {
   background-color: rgba(235, 87, 87, 0.1);
@@ -79,4 +79,7 @@
 .wrapper::-webkit-scrollbar-thumb {
   background: #2f80ed;
   border-radius: 10px;
+}
+.main__table-text a:hover {
+  color: #2f80ed !important;
 }

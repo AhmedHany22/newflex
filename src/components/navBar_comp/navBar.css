@@ -1,0 +1,51 @@
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none !important;
+}
+
+.nav {
+  background-color: #121620;
+}
+
+a {
+  font-size: 18px;
+  color: #fff;
+}
+
+.logo {
+  width: 130px;
+  margin: 0 5% 7px 0;
+  display: inline-block;
+}
+.buttn {
+  color: #fff;
+  border-radius: 6px;
+  border: 1px solid #2f80ed;
+  background-color: rgba(47, 128, 237, 0.1);
+}
+.buttn:hover {
+  background-color: rgba(47, 128, 237, 0.2);
+}
+
+.nav-cont {
+  width: 10%;
+}
+.nav-link {
+  color: #fff !important;
+}
+.sBtn {
+  padding: 8px 17px;
+}
+
+@media screen and (max-width: 985px) {
+  .nav-cont {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .nav-cont {
+    width: 64%;
+  }
+}

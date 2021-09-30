@@ -12,3 +12,68 @@
 .sidebar {
   border-right: 1px solid rgba(47, 128, 237, 0.1);
 }
+
+/* --------------- Button --------------- */
+.navBtn {
+  color: #fff;
+  border-radius: 6px;
+  height: 45px;
+  border: 1px solid #2f80ed;
+  background-color: rgba(47, 128, 237, 0.1);
+}
+
+.navBtn:hover {
+  background-color: rgba(47, 128, 237, 0.2);
+}
+
+.canvann {
+  height: 277px;
+  margin-top: 170px;
+  width: 200px !important;
+  background-color: #121620 !important;
+}
+
+.title {
+  padding-bottom: 1%;
+  border-bottom: 1px solid rgba(47, 128, 237, 0.1);
+}
+.close-btn {
+  border: 0;
+  color: #fff;
+  font-size: 18px;
+  background-color: transparent;
+}
+.addNew {
+  padding: 9px 24px !important;
+  white-space: nowrap;
+}
+.searchBar {
+  background-color: #151f30;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  border: 0;
+}
+.searchBar:focus {
+  border: 1px solid #2f80ed !important;
+}
+.searchItem {
+  height: auto;
+  color: #fff !important;
+  padding: 8px 20px;
+  border: 0;
+  background-color: transparent;
+}
+.searchItem:focus {
+  outline: none;
+  background-color: transparent;
+}
+
+/* ---------------------------- */
+@media only screen and (max-width: 575px) {
+  .aW {
+    display: block !important;
+  }
+  .searchBar {
+    margin-top: 4%;
+  }
+}

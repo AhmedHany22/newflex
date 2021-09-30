@@ -13,6 +13,9 @@
   padding: 0 !important;
   color: #2f80ed !important;
 }
+.list-group-item:hover {
+  color: #2f80ed !important;
+}
 
 .fa-home {
   font-size: 24px !important;

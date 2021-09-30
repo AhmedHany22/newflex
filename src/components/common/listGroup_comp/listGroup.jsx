@@ -2,7 +2,7 @@ import "./listGroup.css";
 
 const ListGroup = ({ genres, onItemSelect, selectedItem }) => {
   return (
-    <ul className="list-group rounded-0 py-3 px-4">
+    <ul className="list-group rounded-0">
       {genres.map((genre) => (
         <li
           key={genre._id}

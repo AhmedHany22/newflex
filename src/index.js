@@ -1,13 +1,15 @@
 import "./index.css";
+import App from "./app";
 import React from "react";
 import ReactDOM from "react-dom";
-import Movie from "./components/movie_comp/movie";
+import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle";
 import "font-awesome/css/font-awesome.min.css";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Movie />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
   document.getElementById("root")
 );

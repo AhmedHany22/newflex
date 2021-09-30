@@ -1,12 +1,22 @@
 /*==================== Paginator ====================*/
 
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none !important;
+}
+button::selection {
+  outline: none !important;
+}
+
 .my {
   color: #fff !important ;
   border-color: #2f80ed;
   cursor: pointer;
 }
 
-.active a {
+.active button {
   cursor: default;
   color: #2f80ed !important;
   border-color: #2f80ed !important;

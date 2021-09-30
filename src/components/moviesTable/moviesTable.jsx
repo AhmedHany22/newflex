@@ -1,5 +1,6 @@
 import "./moviesTable.css";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Like from "../common/like";
 import Table from "../common/table";
 
@@ -8,7 +9,7 @@ class MoviesTable extends Component {
     {
       path: "title",
       label: "TITLE",
-      content: (m) => <a href="/#">{m.title}</a>,
+      content: (m) => <Link to={`/movieForm/${m._id}`}>{m.title}</Link>,
     },
     { path: "genre.name", label: "GENRA" },
     { path: "numberInStock", label: "STOCK" },

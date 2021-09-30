@@ -19,7 +19,11 @@ class TableBody extends Component {
           <tr key={item._id}>
             {columns.map((col) => (
               <td key={this.createKey(item, col)}>
-                <div className="main__table-text mt-1">
+                <div
+                  className={
+                    col.key ? "main__table-text mt-1" : "main__table-text mt-2"
+                  }
+                >
                   {this.renderTd(item, col)}
                 </div>
               </td>
