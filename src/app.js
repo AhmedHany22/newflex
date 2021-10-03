@@ -6,11 +6,13 @@ import NotFound from "./components/common/notFound_comp/notFound";
 import Customers from "./components/customers";
 import Rentals from "./components/rentals";
 import MovieForm from "./components/moviesForm";
+import SignIn from "./components/common/signIn/signIn";
 
 const App = () => {
   return (
     <Switch>
       <Route path="/not-found" component={NotFound} />
+      <Route path="/signIn" component={SignIn} />
       <Route>
         <div>
           <NavBar />
