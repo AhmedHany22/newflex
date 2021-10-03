@@ -17,19 +17,18 @@ class SignIn extends Component {
   validate = () => {
     const errors = {};
     const { account } = this.state;
-    const { error } = Joi.validate(account, this.schema, { abortEarly: false });
+    const options = { abortEarly: false };
+    const { error } = Joi.validate(account, this.schema, options);
     if (!error) return null;
     error.details.map((e) => (errors[e.path[0]] = e.message));
     return errors;
   };
 
   validateProperty = (input) => {
-    if (input.name === "email") {
-      if (input.value === "") return "Email must be entered";
-    }
-    if (input.name === "password") {
-      if (input.value === "") return "Password must be entered";
-    }
+    const obj = { [input.name]: input.value };
+    const schema = { [input.name]: this.schema[input.name] };
+    const { error } = Joi.validate(obj, schema);
+    return !error ? null : error.details[0].message;
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -94,7 +93,11 @@ class SignIn extends Component {
               <input type="checkbox" className="me-3 check" />
               <label htmlFor="remember">Remember Me</label>
             </div>
-            <button className="signBtn" type="submit">
+            <button
+              className="signBtn"
+              type="submit"
+              disabled={this.validate()}
+            >
               Sign in
             </button>
             <span className="or">or</span>
