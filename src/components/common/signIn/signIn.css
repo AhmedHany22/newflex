@@ -48,7 +48,7 @@ button:focus {
   font-size: 14px;
   text-align: left;
 }
-.inGr {
+.input {
   margin-bottom: 22px;
 }
 .signBtn {
@@ -115,6 +115,9 @@ button:disabled:hover {
 .gl:hover {
   color: #df4a32;
   background-color: #fff;
+}
+label {
+  color: #fff;
 }
 
 @media only screen and (max-width: 576px) {
