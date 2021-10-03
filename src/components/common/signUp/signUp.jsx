@@ -1,15 +1,16 @@
-import "./signIn.css";
+import "./signUp.css";
 import { Link } from "react-router-dom";
 import React from "react";
 import Form from "../form";
 import Joi from "joi-browser";
 
-class SignIn extends Form {
+class SignUp extends Form {
   state = {
-    data: { email: "", password: "" },
+    data: { name: "", email: "", password: "" },
     errors: {},
   };
   schema = {
+    name: Joi.string().required().label("Name"),
     email: Joi.string().required().label("Email"),
     password: Joi.string().required().label("Password").min(5),
   };
@@ -18,9 +19,7 @@ class SignIn extends Form {
     // Calling Server
     console.log("Submitted");
   };
-
   render() {
-    const { data, errors } = this.state;
     return (
       <div
         className="bg"
@@ -33,13 +32,14 @@ class SignIn extends Form {
             <Link to="/" className="w-50 mb-5">
               <img src="./images/logo.png" />
             </Link>
+            {this.renderInput("name", "Name", "text")}
             {this.renderInput("email", "Email", "email")}
             {this.renderInput("password", "Password", "password")}
-            <div className="w-100 inGr signGroup">
-              <input type="checkbox" className="me-3 check" />
+            <div className="inGr signGroup">
+              <input type="checkbox" className="me-3" />
               <label htmlFor="remember">Remember Me</label>
             </div>
-            {this.submitBtn("Login")}
+            {this.submitBtn("Register")}
             <span className="or">or</span>
             <div className="signSocial">
               <button className="fb mx-1">
@@ -52,11 +52,8 @@ class SignIn extends Form {
                 <i className="fa mt-1 fa-google" />
               </button>
             </div>
-            <span className="signText">
-              Don't have an account? <Link to="/signup">Sign up!</Link>
-            </span>
-            <span className="signText">
-              <Link to="/forgot">Forgot password?</Link>
+            <span className="signText mt-4">
+              Already have an account? <Link to="/signIn">Sign in!</Link>
             </span>
           </form>
         </div>
@@ -65,4 +62,4 @@ class SignIn extends Form {
   }
 }
 
-export default SignIn;
+export default SignUp;

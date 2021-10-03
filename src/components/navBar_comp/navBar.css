@@ -22,7 +22,7 @@ a {
 .buttn {
   color: #fff;
   border-radius: 6px;
-  border: 1px solid #2f80ed;
+  border: 1px solid #2f80ed !important;
   background-color: rgba(47, 128, 237, 0.1);
 }
 .buttn:hover {

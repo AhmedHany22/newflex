@@ -7,7 +7,7 @@ input:focus,
 textarea:focus,
 select:focus,
 button:focus {
-  outline: none;
+  outline: none !important;
 }
 .myContainer {
   padding: 40px 0;
@@ -15,6 +15,7 @@ button:focus {
 }
 .bg {
   height: 100%;
+  background-attachment: fixed;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -32,6 +33,7 @@ button:focus {
   align-items: center;
 }
 .signInput {
+  width: 100%;
   background-color: #151f30;
   border: 2px solid transparent;
   height: 46px;
@@ -40,16 +42,15 @@ button:focus {
   padding: 0 20px;
 }
 .signInput:focus {
-  outline: 0 !important;
   background-color: #151f30;
   border: 1px solid #2f80ed;
 }
-
 .signGroup {
   font-size: 14px;
   text-align: left;
 }
-.input {
+.inGr {
+  width: 100%;
   margin-bottom: 22px;
 }
 .signBtn {
@@ -63,14 +64,6 @@ button:focus {
   border: 2px solid #2f80ed;
   margin-top: 15px;
   margin-bottom: 15px;
-}
-button:disabled {
-  color: #000;
-  border-color: #222028;
-  background-color: #222028;
-}
-button:disabled:hover {
-  background-color: #222028;
 }
 .signBtn:hover {
   background-color: rgba(47, 128, 237, 0.2);
@@ -89,6 +82,9 @@ button:disabled:hover {
 }
 .signForm a:hover {
   text-decoration: underline;
+}
+.signSocial {
+  margin: 15px 0;
 }
 .signSocial button {
   color: #fff;
@@ -117,10 +113,55 @@ button:disabled:hover {
   color: #df4a32;
   background-color: #fff;
 }
-label {
-  color: #fff;
-}
 
+.bgForgot {
+  height: 100vh;
+  padding-top: 5%;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.form {
+  padding: 3%;
+  border: 1px solid rgba(47, 128, 237, 0.1);
+  border-radius: 6px;
+}
+.drop-btn {
+  width: 100%;
+  text-align: left;
+  background-color: #151f30;
+  border: 0;
+  padding: 13px 20px;
+}
+.dropdown-menu {
+  padding: 4px;
+  position: relative;
+  margin-top: -5px !important;
+  width: 100%;
+  border: 0;
+  border-radius: 0 0 6px 6px;
+  background-color: #151f30;
+}
+.drop-btn:focus {
+  outline: 0 !important;
+  border: 0;
+  box-shadow: 0 !important;
+  background-color: #151f30;
+}
+.drop-btn::after {
+  margin-top: 5px;
+  margin-left: 90%;
+  color: #1da1f2;
+}
+.drop-btn:hover {
+  background-color: #151f30;
+}
+.inTy::after {
+  color: blue !important;
+  content: "\25B2";
+  margin-top: 1px;
+}
 @media only screen and (max-width: 576px) {
   .signForm {
     padding: 40px 20px;
@@ -128,14 +169,23 @@ label {
   .signSocial button {
     padding: 10px 50px;
   }
+  .drop-btn::after {
+    margin-left: 80%;
+  }
 }
 @media only screen and (max-width: 450px) {
   .signSocial button {
     padding: 10px 45px;
   }
+  .drop-btn::after {
+    margin-left: 75%;
+  }
 }
 @media only screen and (max-width: 410px) {
   .signSocial button {
     padding: 10px 30px;
+  }
+  .drop-btn::after {
+    margin-left: 70%;
   }
 }

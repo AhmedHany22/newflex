@@ -7,12 +7,14 @@ import Customers from "./components/customers";
 import Rentals from "./components/rentals";
 import MovieForm from "./components/moviesForm";
 import SignIn from "./components/common/signIn/signIn";
+import SignUp from "./components/common/signUp/signUp";
 
 const App = () => {
   return (
     <Switch>
       <Route path="/not-found" component={NotFound} />
       <Route path="/signIn" component={SignIn} />
+      <Route path="/signUp" component={SignUp} />
       <Route>
         <div>
           <NavBar />
