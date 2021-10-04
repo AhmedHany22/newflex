@@ -63,6 +63,15 @@ button:focus {
   border: 2px solid #2f80ed;
   margin-top: 15px;
   margin-bottom: 15px;
+  text-decoration: none;
+}
+.signLink {
+  text-decoration: none;
+}
+button:disabled .signLink {
+  color: #000 !important;
+  text-decoration: none;
+  cursor: default;
 }
 button:disabled {
   color: #000;

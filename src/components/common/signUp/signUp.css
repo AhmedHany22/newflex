@@ -129,39 +129,26 @@ button:focus {
 }
 .drop-btn {
   width: 100%;
-  text-align: left;
-  background-color: #151f30;
-  border: 0;
+  text-align: left !important;
+  background-color: #151f30 !important;
+  border: 0 !important;
   padding: 13px 20px;
 }
-.dropdown-menu {
-  padding: 4px;
-  position: relative;
-  margin-top: -5px !important;
+.form-select {
+  padding: 12px !important;
+  padding-left: 21px !important;
   width: 100%;
-  border: 0;
-  border-radius: 0 0 6px 6px;
-  background-color: #151f30;
-}
-.drop-btn:focus {
-  outline: 0 !important;
-  border: 0;
-  box-shadow: 0 !important;
-  background-color: #151f30;
-}
-.drop-btn::after {
-  margin-top: 5px;
-  margin-left: 90%;
-  color: #1da1f2;
-}
-.drop-btn:hover {
-  background-color: #151f30;
+  border: 0 !important;
+  color: #1da1f2 !important;
+  border-radius: 6px !important;
+  background-color: #151f30 !important;
 }
 .inTy::after {
   color: blue !important;
   content: "\25B2";
   margin-top: 1px;
 }
+
 @media only screen and (max-width: 576px) {
   .signForm {
     padding: 40px 20px;

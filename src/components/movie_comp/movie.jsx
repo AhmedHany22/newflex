@@ -7,6 +7,7 @@ import MoviesTable from "../moviesTable_comp/moviesTable";
 import Pagination from "../common/pagination_comp/pagination";
 import Paginate from "../../utils/paginate";
 import ListGroup from "../common/listGroup_comp/listGroup";
+import { Link } from "react-router-dom";
 
 class Movie extends Component {
   state = {
@@ -78,6 +79,22 @@ class Movie extends Component {
           </div>
         </div>
         <div className="col p-0">
+          <div className="mx-3 mt-3 title d-flex justify-content-between aW">
+            <div class="d-flex justify-content-between ">
+              <button
+                type="button"
+                className="navBtn me-3"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample"
+              >
+                <span className="mx-4 my-2 d-block">Filters</span>
+              </button>
+              <Link to="/movieForm/new" className="btn navBtn addNew">
+                <span className="d-inline-block">Add New</span>
+              </Link>
+            </div>
+          </div>
           <main className="wrapper px-3 pt-3">
             <MoviesTable
               moviesList={pMovies}

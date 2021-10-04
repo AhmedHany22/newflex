@@ -18,8 +18,8 @@
   color: #fff;
   border-radius: 6px;
   height: 45px;
-  border: 1px solid #2f80ed;
-  background-color: rgba(47, 128, 237, 0.1);
+  border: 1px solid #2f80ed !important;
+  background-color: rgba(47, 128, 237, 0.1) !important;
 }
 
 .navBtn:hover {
@@ -60,8 +60,8 @@
   height: auto;
   color: #fff !important;
   padding: 8px 20px;
-  border: 0;
-  background-color: transparent;
+  border: 0 !important;
+  background-color: transparent !important;
 }
 .searchItem:focus {
   outline: none;

@@ -7,11 +7,12 @@ button:focus {
 
 .nav {
   background-color: #121620;
+  border: 1px solid rgba(47, 128, 237, 0.1);
 }
 
 a {
   font-size: 18px;
-  color: #fff;
+  color: #fff !important;
 }
 
 .logo {
@@ -22,7 +23,7 @@ a {
 .buttn {
   color: #fff;
   border-radius: 6px;
-  border: 1px solid #2f80ed !important;
+  border: 1px solid #2f80ed;
   background-color: rgba(47, 128, 237, 0.1);
 }
 .buttn:hover {
@@ -31,9 +32,6 @@ a {
 
 .nav-cont {
   width: 10%;
-}
-.nav-link {
-  color: #fff !important;
 }
 .sBtn {
   padding: 8px 17px;
