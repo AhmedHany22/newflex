@@ -8,6 +8,7 @@ import Pagination from "../common/pagination_comp/pagination";
 import Paginate from "../../utils/paginate";
 import ListGroup from "../common/listGroup_comp/listGroup";
 import { Link } from "react-router-dom";
+import SearchBox from "../common/searchBox";
 
 class Movie extends Component {
   state = {
@@ -16,6 +17,7 @@ class Movie extends Component {
     cPage: 1,
     genres: [],
     sortColumn: { path: "title", order: "asc" },
+    searchQuery: "",
   };
 
   componentDidMount() {
@@ -27,12 +29,25 @@ class Movie extends Component {
   }
 
   getPgaedData() {
-    const { allMovies, pageSize, cPage, selectedGenre, sortColumn } =
-      this.state;
-    const fMovies =
-      selectedGenre && selectedGenre._id
-        ? allMovies.filter((movie) => movie.genre._id === selectedGenre._id)
-        : allMovies;
+    const {
+      allMovies,
+      pageSize,
+      cPage,
+      selectedGenre,
+      sortColumn,
+      searchQuery,
+    } = this.state;
+    let fMovies = allMovies;
+
+    if (searchQuery)
+      fMovies = allMovies.filter((movie) =>
+        movie.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+      );
+    else if (selectedGenre && selectedGenre._id) {
+      fMovies = allMovies.filter(
+        (movie) => movie.genre._id === selectedGenre._id
+      );
+    }
 
     const sMovies = _.orderBy(fMovies, [sortColumn.path], [sortColumn.order]);
 
@@ -41,7 +56,8 @@ class Movie extends Component {
   }
 
   render() {
-    const { allMovies, pageSize, cPage, genres, sortColumn } = this.state;
+    const { allMovies, pageSize, cPage, genres, sortColumn, searchQuery } =
+      this.state;
 
     if (allMovies.length === 0)
       return <h1 className="mt-5">There no more movies in DataBase</h1>;
@@ -94,6 +110,7 @@ class Movie extends Component {
                 <span className="d-inline-block">Add New</span>
               </Link>
             </div>
+            <SearchBox value={searchQuery} onClick={this.handleSearch} />
           </div>
           <main className="wrapper px-3 pt-3">
             <MoviesTable
@@ -127,11 +144,14 @@ class Movie extends Component {
   handlePageChange = (p) => {
     this.setState({ cPage: p });
   };
-  handleGenreSelect = (g) => {
-    this.setState({ selectedGenre: g, cPage: 1 });
-  };
   handleSort = (sortColumn) => {
     this.setState({ sortColumn });
+  };
+  handleGenreSelect = (g) => {
+    this.setState({ selectedGenre: g, searchQuery: "", cPage: 1 });
+  };
+  handleSearch = (e) => {
+    this.setState({ selectedGenre: null, searchQuery: e, cPage: 1 });
   };
 }
 
