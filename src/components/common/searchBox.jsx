@@ -8,22 +8,22 @@ class SearchBox extends React.Component {
   render() {
     const { onClick } = this.props;
     return (
-      <div class="col-md-4 d-inline-block aW">
-        <div class="input-group mb-3 searchBar">
+      <div className="col-md-4 d-inline-block aW">
+        <div className="input-group mb-3 searchBar">
           {" "}
           <input
             type="text"
             value={this.state.value}
             placeholder="Search ...."
             onChange={this.handleChange}
-            class="form-control input-text searchItem"
+            className="form-control input-text searchItem"
           />
-          <div class="input-group-append">
+          <div className="input-group-append">
             <button
-              class="btn searchItem"
+              className="btn searchItem"
               onClick={() => onClick(this.state.value)}
             >
-              <i class="fa fa-search"></i>
+              <i className="fa fa-search"></i>
             </button>
           </div>
         </div>

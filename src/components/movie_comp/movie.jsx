@@ -1,14 +1,17 @@
 import "./movie.css";
 import React, { Component } from "react";
 import _ from "lodash";
-import { getMovies } from "../../services/fakeMovieService";
-import { getGenres } from "../../services/fakeGenreService";
+import { getGenres } from "../../services/genreService";
+import { getMovies, deleteMovie } from "../../services/movieService";
 import MoviesTable from "../moviesTable_comp/moviesTable";
 import Pagination from "../common/pagination_comp/pagination";
 import Paginate from "../../utils/paginate";
 import ListGroup from "../common/listGroup_comp/listGroup";
 import { Link } from "react-router-dom";
 import SearchBox from "../common/searchBox";
+import { toast } from "react-toastify";
+import http from "../../services/httpService";
+import { apiMovies } from "../../config.json";
 
 class Movie extends Component {
   state = {
@@ -16,14 +19,18 @@ class Movie extends Component {
     pageSize: 6,
     cPage: 1,
     genres: [],
-    sortColumn: { path: "title", order: "asc" },
     searchQuery: "",
+    sortColumn: { path: "title", order: "asc" },
   };
 
-  componentDidMount() {
-    const genres = [{ _id: "", name: "All Genres" }, ...getGenres()];
+  async componentDidMount() {
+    const { data } = await getGenres();
+    const genres = [{ _id: "", name: "All Genres" }, ...data];
+
+    const { data: allMovies } = await getMovies();
+
     this.setState({
-      allMovies: getMovies(),
+      allMovies,
       genres,
     });
   }
@@ -96,7 +103,7 @@ class Movie extends Component {
         </div>
         <div className="col p-0">
           <div className="mx-3 mt-3 title d-flex justify-content-between aW">
-            <div class="d-flex justify-content-between ">
+            <div className="d-flex justify-content-between ">
               <button
                 type="button"
                 className="navBtn me-3"
@@ -131,10 +138,21 @@ class Movie extends Component {
       </main>
     );
   }
-  handleDelete = (i) => {
-    const newMovies = this.state.allMovies.filter((m) => m._id !== i._id);
+
+  handleDelete = async (i) => {
+    const originalMovies = [...this.state.allMovies];
+    const newMovies = originalMovies.filter((m) => m._id !== i._id);
     this.setState({ allMovies: newMovies });
+
+    try {
+      await deleteMovie(i._id);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 500)
+        toast.error("This Movie doesnt exist");
+      this.setState({ allMovies: originalMovies });
+    }
   };
+
   handleLiked = (i) => {
     const movies = [...this.state.allMovies];
     const index = movies.indexOf(i);

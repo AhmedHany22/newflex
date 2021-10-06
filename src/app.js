@@ -8,28 +8,33 @@ import Rentals from "./components/rentals";
 import MovieForm from "./components/moviesForm";
 import SignIn from "./components/common/signIn/signIn";
 import SignUp from "./components/common/signUp/signUp";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
-    <Switch>
-      <Route path="/not-found" component={NotFound} />
-      <Route path="/signIn" component={SignIn} />
-      <Route path="/signUp" component={SignUp} />
-      <Route>
-        <div>
-          <NavBar />
-          <Switch>
-            <Route path="/movieForm/:id" component={MovieForm} />
-            <Route path="/movieForm" component={MovieForm} />
-            <Route path="/customers" component={Customers} />
-            <Route path="/rentals" component={Rentals} />
-            <Route path="/movies" component={Movie} />
-            <Redirect from="/" exact to="/movies" />
-            <Redirect to="/not-found" />
-          </Switch>
-        </div>
-      </Route>
-    </Switch>
+    <React.Fragment>
+      <ToastContainer />
+      <Switch>
+        <Route path="/not-found" component={NotFound} />
+        <Route path="/signIn" component={SignIn} />
+        <Route path="/signUp" component={SignUp} />
+        <Route>
+          <div>
+            <NavBar />
+            <Switch>
+              <Route path="/movieForm/:id" component={MovieForm} />
+              <Route path="/movieForm" component={MovieForm} />
+              <Route path="/customers" component={Customers} />
+              <Route path="/rentals" component={Rentals} />
+              <Route path="/movies" component={Movie} />
+              <Redirect from="/" exact to="/movies" />
+              <Redirect to="/not-found" />
+            </Switch>
+          </div>
+        </Route>
+      </Switch>
+    </React.Fragment>
   );
 };
 
