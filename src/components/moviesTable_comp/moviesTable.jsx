@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Like from "../common/like";
 import Table from "../common/table";
+import { currentUser } from "../../services/authService";
 
 class MoviesTable extends Component {
   columns = [
@@ -35,15 +36,25 @@ class MoviesTable extends Component {
         />
       ),
     },
-    {
-      key: 2,
-      content: (m) => (
-        <button className="butn del" onClick={() => this.props.onDelete(m)}>
-          <i className="fa fa-trash text-danger"></i>
-        </button>
-      ),
-    },
   ];
+
+  deleteColumn = {
+    key: 2,
+    content: (m) => (
+      <button className="butn del" onClick={() => this.props.onDelete(m)}>
+        <i className="fa fa-trash text-danger"></i>
+      </button>
+    ),
+  };
+
+  constructor() {
+    super();
+    const user = currentUser();
+    if (user && user.isAdmin) {
+      this.columns.push(this.deleteColumn);
+    }
+  }
+
   render() {
     const { moviesList, sortColumn, onSort } = this.props;
     return (

@@ -10,8 +10,6 @@ import ListGroup from "../common/listGroup_comp/listGroup";
 import { Link } from "react-router-dom";
 import SearchBox from "../common/searchBox";
 import { toast } from "react-toastify";
-import http from "../../services/httpService";
-import { apiMovies } from "../../config.json";
 
 class Movie extends Component {
   state = {
@@ -29,10 +27,7 @@ class Movie extends Component {
 
     const { data: allMovies } = await getMovies();
 
-    this.setState({
-      allMovies,
-      genres,
-    });
+    this.setState({ allMovies, genres });
   }
 
   getPgaedData() {
@@ -63,11 +58,7 @@ class Movie extends Component {
   }
 
   render() {
-    const { allMovies, pageSize, cPage, genres, sortColumn, searchQuery } =
-      this.state;
-
-    if (allMovies.length === 0)
-      return <h1 className="mt-5">There no more movies in DataBase</h1>;
+    const { pageSize, cPage, genres, sortColumn, searchQuery } = this.state;
 
     const { pMovies, tCount } = this.getPgaedData();
 
@@ -113,9 +104,11 @@ class Movie extends Component {
               >
                 <span className="mx-4 my-2 d-block">Filters</span>
               </button>
-              <Link to="/movieForm/new" className="btn navBtn addNew">
-                <span className="d-inline-block">Add New</span>
-              </Link>
+              {this.props.user && (
+                <Link to="/movieForm/new" className="btn navBtn addNew">
+                  <span className="d-inline-block">Add New</span>
+                </Link>
+              )}
             </div>
             <SearchBox value={searchQuery} onClick={this.handleSearch} />
           </div>

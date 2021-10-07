@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import React from "react";
 import Form from "../form";
 import Joi from "joi-browser";
+import { toast } from "react-toastify";
+import { registerUser } from "../../../services/userService";
+import { signUp } from "../../../services/authService";
 
 class SignUp extends Form {
   state = {
@@ -15,9 +18,21 @@ class SignUp extends Form {
     password: Joi.string().required().label("Password").min(5),
   };
 
-  doSubmit = () => {
-    // Calling Server
-    console.log("Submitted");
+  doSubmit = async () => {
+    try {
+      const response = await registerUser(this.state.data);
+      await signUp(response.headers["x-auth-token"]);
+      window.location = "/";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        toast.error("This user already registered");
+        const errors = { ...this.state.errors };
+        errors.email = "This Email already registered";
+        this.setState({ errors });
+      }
+      return;
+    }
+    toast.success("Registered Successfully");
   };
   render() {
     return (

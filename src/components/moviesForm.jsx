@@ -3,6 +3,7 @@ import { getGenres } from "../services/genreService";
 import { getMovie, saveMovie } from "../services/movieService";
 import Joi from "joi-browser";
 import Form from "./common/form";
+import { toast } from "react-toastify";
 
 class MovieForm extends Form {
   state = {
@@ -63,12 +64,12 @@ class MovieForm extends Form {
   }
 
   doSubmit = () => {
-    // Calling Server
     saveMovie(this.state.data);
+
     this.props.history.push("/");
   };
   render() {
-    const { data, genres, errors } = this.state;
+    const { data, errors } = this.state;
     return (
       <div className="bg">
         <div className="myContainer d-flex justify-content-center">

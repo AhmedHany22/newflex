@@ -1,7 +1,8 @@
 import "./navBar.css";
 import { NavLink } from "react-router-dom";
+import React from "react";
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
   return (
     <nav className="navbar navbar-expand-lg nav">
       <div className="container-fluid px-3 pt-3">
@@ -43,12 +44,28 @@ const NavBar = () => {
         </div>
 
         <span>
-          <NavLink to="/signIn">
-            <button className="buttn sBtn" to="/logIn">
-              <span className="d-inline-block me-2">Sign In</span>
-              <i className="fa fa-sign-in"></i>
-            </button>
-          </NavLink>
+          {!user && (
+            <NavLink to="/signIn">
+              <button className="buttn sBtn" to="/logIn">
+                <span className="d-inline-block me-2">Sign In</span>
+                <i className="fa fa-sign-in"></i>
+              </button>
+            </NavLink>
+          )}
+          {user && (
+            <React.Fragment>
+              <button className=" buttn lBtn me-4">
+                <span className="d-inline-block me-2">{user.name}</span>
+                <i className="fa fa-user"></i>
+              </button>
+              <NavLink to="/signOut">
+                <button className=" buttn sBtn">
+                  <span className="d-inline-block me-2">Sign Out</span>
+                  <i className="fa fa-sign-out"></i>
+                </button>
+              </NavLink>
+            </React.Fragment>
+          )}
         </span>
       </div>
     </nav>

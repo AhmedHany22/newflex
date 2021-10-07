@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import React from "react";
 import Form from "../form";
 import Joi from "joi-browser";
+import { currentUser, signIn } from "../../../services/authService";
+import { toast } from "react-toastify";
+import { Redirect } from "react-router";
 
 class SignIn extends Form {
   state = {
@@ -14,13 +17,24 @@ class SignIn extends Form {
     password: Joi.string().required().label("Password").min(5),
   };
 
-  doSubmit = () => {
-    // Calling Server
-    console.log("Submitted");
+  doSubmit = async () => {
+    try {
+      await signIn(this.state.data);
+      const { state } = this.props.location;
+      window.location = state ? state.from : "/";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        toast.error("Invalid Email or Password");
+        const errors = { ...this.state.errors };
+        errors.email = "invalid email or password";
+        this.setState({ errors });
+      }
+    }
   };
 
   render() {
-    const { data, errors } = this.state;
+    if (currentUser()) return <Redirect to="/" />;
+
     return (
       <div
         className="bg"

@@ -36,6 +36,9 @@ a {
 .sBtn {
   padding: 8px 17px;
 }
+.lBtn {
+  padding: 10px 20px;
+}
 
 @media screen and (max-width: 985px) {
   .nav-cont {
