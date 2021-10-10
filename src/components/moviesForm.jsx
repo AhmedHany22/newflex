@@ -3,7 +3,6 @@ import { getGenres } from "../services/genreService";
 import { getMovie, saveMovie } from "../services/movieService";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import { toast } from "react-toastify";
 
 class MovieForm extends Form {
   state = {

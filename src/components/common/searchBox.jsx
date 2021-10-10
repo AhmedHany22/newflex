@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class SearchBox extends React.Component {
+class SearchBox extends Component {
   state = { value: this.props.value };
   handleChange = ({ currentTarget: input }) => {
     this.setState({ value: input.value });

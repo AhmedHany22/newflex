@@ -45,7 +45,7 @@ class SignIn extends Form {
         <div className="myContainer d-flex justify-content-center">
           <form className="signForm mx-auto" onSubmit={this.handleSubmit}>
             <Link to="/" className="w-50 mb-5">
-              <img src="./images/logo.png" />
+              <img src="./images/logo.png" alt="Logo" />
             </Link>
             {this.renderInput("email", "Email", "email")}
             {this.renderInput("password", "Password", "password")}

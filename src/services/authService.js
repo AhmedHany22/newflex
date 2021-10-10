@@ -1,11 +1,10 @@
 import http from "./httpService";
-import { apiAuth } from "../config.json";
 import JwtDecode from "jwt-decode";
 
 const tokenName = "token";
 
 export async function signIn(info) {
-  const { data: jwt } = await http.post(apiAuth, info);
+  const { data: jwt } = await http.post("/auth", info);
   localStorage.setItem(tokenName, jwt);
 }
 export async function signUp(jwt) {
