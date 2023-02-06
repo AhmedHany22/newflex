@@ -40,8 +40,7 @@ class SignUp extends Form {
         className="bg"
         style={{
           backgroundImage: "url(/images/bg.jpg)",
-        }}
-      >
+        }}>
         <div className="myContainer d-flex justify-content-center">
           <form className="signForm mx-auto" onSubmit={this.handleSubmit}>
             <Link to="/" className="w-50 mb-5">
@@ -50,10 +49,6 @@ class SignUp extends Form {
             {this.renderInput("name", "Name", "text")}
             {this.renderInput("email", "Email", "email")}
             {this.renderInput("password", "Password", "password")}
-            <div className="inGr signGroup">
-              <input type="checkbox" className="me-3" />
-              <label htmlFor="remember">Remember Me</label>
-            </div>
             {this.submitBtn("Register")}
             <span className="or">or</span>
             <div className="signSocial">
